@@ -20,7 +20,7 @@ namespace EscapeToAndromeda
 			var stryPlanetRotation = TryFindResource("PlanetRotation") as Storyboard;
 			stryPlanetRotation.Begin();
 
-			PlayMusic("Interstellar", this.medMusic);
+			PlayMusic("Interstellar", this.MedMusic);
 
 			//this._gameTimer.Interval = TimeSpan.FromMilliseconds(20);
 			//// link the game engine event to the timer
@@ -46,6 +46,12 @@ namespace EscapeToAndromeda
 		private void BtnExit_Click(object sender, RoutedEventArgs e)
 		{
 			this.Close();
+		}
+
+		private void medMusic_MediaEnded(object sender, RoutedEventArgs e)
+		{
+			this.MedMusic.Position = new TimeSpan(0, 0, 1);
+			this.MedMusic.Play();
 		}
 	}
 }

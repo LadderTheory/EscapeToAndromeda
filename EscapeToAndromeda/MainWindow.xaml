@@ -27,11 +27,11 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Label x:Name="LblEscapeTo" Content="Escape To" Height="95" Canvas.Left="4" Canvas.Top="107" Width="430" Background="{x:Null}" Foreground="#FF007DC8" FontSize="75" FontWeight="Bold" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center"/>
-        <Label x:Name="LblAndromeda" Content="Andromeda" Height="100" Canvas.Left="2.5" Canvas.Top="173" Width="430" Background="{x:Null}" Foreground="#FF007DC8" FontSize="75" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center"/>
-        <Button x:Name="BtnStart" Content="START" Height="54" Canvas.Left="142.5" Canvas.Top="342.04" Width="150" Background="#7F000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" FontFamily="Transformers Movie"/>
-        <Button x:Name="BtnLoad" Content="LOAD" Height="54" Canvas.Left="142.5" Canvas.Top="401.04" Width="150" Background="#7F000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" FontFamily="Transformers Movie"/>
-        <Button x:Name="BtnExit" Content="EXIT" Height="54" Canvas.Left="142.5" Canvas.Top="460.04" Width="150" Background="#7F000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" Click="BtnExit_Click" FontFamily="Transformers Movie"/>
-        <MediaElement x:Name="medMusic" Height="100" Canvas.Left="30" Canvas.Top="292" Width="100" Volume="0.25"/>
+        <Label x:Name="LblEscapeTo" Content="Escape To" Height="95" Canvas.Left="9" Canvas.Top="147" Width="430" Background="{x:Null}" Foreground="#FF007DC8" FontSize="75" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center"/>
+        <Label x:Name="LblAndromeda" Content="Andromeda" Height="100" Canvas.Left="7" Canvas.Top="213" Width="430" Background="{x:Null}" Foreground="#FF007DC8" FontSize="75" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center"/>
+        <Button x:Name="BtnStart" Content="START" Height="54" Canvas.Left="144" Canvas.Top="386" Width="150" Background="#BF000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" FontFamily="Transformers Movie"/>
+        <Button x:Name="BtnLoad" Content="LOAD" Height="54" Canvas.Left="144" Canvas.Top="445" Width="150" Background="#BF000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" FontFamily="Transformers Movie"/>
+        <Button x:Name="BtnExit" Content="EXIT" Height="54" Canvas.Left="144" Canvas.Top="504" Width="150" Background="#BF000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" Click="BtnExit_Click" FontFamily="Transformers Movie"/>
+        <MediaElement x:Name="MedMusic" Height="100" Canvas.Left="30" Canvas.Top="292" Width="100" Volume="0.10" UnloadedBehavior="Manual" MediaEnded="medMusic_MediaEnded"/>
     </Canvas>
 </Window>
