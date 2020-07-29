@@ -1,0 +1,36 @@
+﻿<Window x:Class="EscapeToAndromeda.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EscapeToAndromeda"
+        mc:Ignorable="d"
+        Title="Escape to Andromeda" Height="800" Width="450" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="#FF00000F">
+    <Window.Resources>
+        <Storyboard x:Key="PlanetRotation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <EasingDoubleKeyFrame KeyTime="00:01:00" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="00:02:00" Value="180"/>
+                <EasingDoubleKeyFrame KeyTime="00:03:00" Value="270"/>
+                <EasingDoubleKeyFrame KeyTime="00:04:00" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Canvas x:Name="CanMain">
+        <Image x:Name="image" Height="798" Canvas.Top="286" Width="705" Source="/Resources/PlanetMain.png" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Label x:Name="LblEscapeTo" Content="Escape To" Height="95" Canvas.Left="4" Canvas.Top="106.7" Width="430" Background="{x:Null}" Foreground="#FF007DC8" FontSize="75" FontWeight="Bold" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center"/>
+        <Label x:Name="LblAndromeda" Content="Andromeda" Height="100" Canvas.Left="2.5" Canvas.Top="173" Width="430" Background="{x:Null}" Foreground="#FF007DC8" FontSize="75" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center"/>
+        <Button x:Name="BtnStart" Content="START" Height="54" Canvas.Left="142.5" Canvas.Top="342.04" Width="150" Background="#7F000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" FontFamily="Transformers Movie"/>
+        <Button x:Name="BtnLoad" Content="LOAD" Height="54" Canvas.Left="142.5" Canvas.Top="401.04" Width="150" Background="#7F000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" FontFamily="Transformers Movie"/>
+        <Button x:Name="BtnExit" Content="EXIT" Height="54" Canvas.Left="142.5" Canvas.Top="460.04" Width="150" Background="#7F000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" Click="BtnExit_Click" FontFamily="Transformers Movie"/>
+    </Canvas>
+</Window>
