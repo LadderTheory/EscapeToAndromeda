@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Media;
 using System.Windows;
-using System.Windows.Media;
+using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using WMPLib;
 
 namespace EscapeToAndromeda
 {
@@ -22,7 +20,7 @@ namespace EscapeToAndromeda
 			var stryPlanetRotation = TryFindResource("PlanetRotation") as Storyboard;
 			stryPlanetRotation.Begin();
 
-			PlayMusic("Interstellar");
+			PlayMusic("Interstellar", this.medMusic);
 
 			//this._gameTimer.Interval = TimeSpan.FromMilliseconds(20);
 			//// link the game engine event to the timer
@@ -31,25 +29,14 @@ namespace EscapeToAndromeda
 			//this._gameTimer.Start();
 		}
 
-		private static void PlayMusic(string strSoundFileName)
+		/// <summary>
+		/// A static method to play music off a given media element control.
+		/// </summary>
+		/// <param name="strSoundFileName"></param>
+		/// <param name="medPlayer"></param>
+		private static void PlayMusic(string strSoundFileName, MediaElement medPlayer)
 		{
-			//var player = new WindowsMediaPlayer
-			//			 {
-			//				 URL = $@"{Environment.CurrentDirectory}/Resources/{strSoundFileName}.mp3"
-			//			 };
-
-			//player.controls.play();
-
-			var player = new MediaPlayer();
-			player.Open(new Uri($@"Resources/{strSoundFileName}.mp3", UriKind.Relative));
-			player.Play();
-			int x = 5;
-			int y = 6;
-			//var player = new SoundPlayer
-			//			 {
-			//				 SoundLocation = $@"{Environment.CurrentDirectory}/Resources/{strSoundFileName}.wav"
-			//			 };
-			//player.PlayLooping();
+			medPlayer.Source = new Uri($@"Resources/{strSoundFileName}.mp3", UriKind.Relative);
 		}
 
 		private void GameEngine(object sender, EventArgs e)
