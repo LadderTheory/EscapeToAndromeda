@@ -43,7 +43,8 @@ namespace EscapeToAndromeda
 			var player = new MediaPlayer();
 			player.Open(new Uri($@"Resources/{strSoundFileName}.mp3", UriKind.Relative));
 			player.Play();
-			int x = 4;
+			int x = 5;
+			int y = 6;
 			//var player = new SoundPlayer
 			//			 {
 			//				 SoundLocation = $@"{Environment.CurrentDirectory}/Resources/{strSoundFileName}.wav"
