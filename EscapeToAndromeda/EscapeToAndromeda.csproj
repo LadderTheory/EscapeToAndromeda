@@ -7,16 +7,64 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\Ships\armored01.png" />
+    <None Remove="Resources\Images\Ships\armored02.png" />
+    <None Remove="Resources\Images\Ships\armored03.png" />
+    <None Remove="Resources\Images\Ships\armored04.png" />
+    <None Remove="Resources\Images\Ships\default01.png" />
+    <None Remove="Resources\Images\Ships\default02.png" />
+    <None Remove="Resources\Images\Ships\default03.png" />
+    <None Remove="Resources\Images\Ships\default04.png" />
+    <None Remove="Resources\Images\Ships\integration01.png" />
+    <None Remove="Resources\Images\Ships\integration02.png" />
+    <None Remove="Resources\Images\Ships\integration03.png" />
+    <None Remove="Resources\Images\Ships\integration04.png" />
     <None Remove="Resources\Interstellar.mp3" />
     <None Remove="Resources\PlanetMain.png" />
     <None Remove="Resources\Transformers Movie.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Interstellar.mp3">
+    <Content Include="Resources\Images\Ships\armored01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\PlanetMain.png">
+    <Content Include="Resources\Images\Ships\armored02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\armored03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\armored04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\default01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\default02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\default03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\default04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\integration01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\integration02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\integration03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\integration04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Sound\Interstellar.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\PlanetMain.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Transformers Movie.ttf">
@@ -26,6 +74,21 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="LocalizationEnglish.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LocalizationEnglish.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="LocalizationEnglish.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizationEnglish.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
