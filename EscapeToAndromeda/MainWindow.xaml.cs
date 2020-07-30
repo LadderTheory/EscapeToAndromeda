@@ -47,17 +47,32 @@ namespace EscapeToAndromeda
 		{
 		}
 
+		/// <summary>
+		/// What happens when we click on the exit button.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void BtnExit_Click(object sender, RoutedEventArgs e)
 		{
 			Close();
 		}
 
+		/// <summary>
+		/// Ensures that background music is in a loop
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void MedMusic_MediaEnded(object sender, RoutedEventArgs e)
 		{
 			MedMusic.Position = new TimeSpan(0, 0, 1);
 			MedMusic.Play();
 		}
 
+		/// <summary>
+		/// What occurs when you hit the "Start" button on the main menu
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private async void BtnStart_Click(object sender, RoutedEventArgs e)
 		{
 			// Fade away the main menu
@@ -71,10 +86,16 @@ namespace EscapeToAndromeda
 
 			// Waits 3 seconds before starting the next storyboard
 			await Task.Delay(3000);
+
 			var sboStoryMode = TryFindResource("StoryMode") as Storyboard;
 			sboStoryMode.Begin();
 		}
 
+		/// <summary>
+		/// Transitions through the intro screen
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private async void txtConflicted_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			var sboConflictedEnable  = TryFindResource("txtConflictedEnable") as Storyboard;
@@ -103,6 +124,10 @@ namespace EscapeToAndromeda
 			}
 			else if (txtConflicted.Text == English.Stars)
 			{
+				sboConflictedDisable.Begin();
+				await Task.Delay(2000);
+				CanIntro.Visibility = Visibility.Collapsed;
+				CanBattle.Visibility = Visibility.Visible;
 			}
 		}
 	}

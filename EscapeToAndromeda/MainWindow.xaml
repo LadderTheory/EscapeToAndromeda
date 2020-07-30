@@ -54,7 +54,7 @@
     </Window.Resources>
     <Canvas x:Name="CanBackground">
         <MediaElement x:Name="MedMusic" Height="100" Canvas.Left="30" Canvas.Top="292" Width="100" Volume="0.10" UnloadedBehavior="Manual" MediaEnded="MedMusic_MediaEnded"/>
-        <Canvas x:Name="CanMain" Height="774" Canvas.Left="10" Width="430" d:IsHidden="True">
+        <Canvas x:Name="CanMain" Height="774" Canvas.Left="10" Width="430">
             <Image x:Name="ImgPlanet" Height="798" Canvas.Top="311.908" Width="705" Source="/Resources/Images/PlanetMain.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="10">
                 <Image.RenderTransform>
                     <TransformGroup>
@@ -72,11 +72,11 @@
             <Button x:Name="BtnExit" Content="EXIT" Height="54" Canvas.Left="140" Canvas.Top="551.04" Width="150" Background="#BF000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" Click="BtnExit_Click" FontFamily="Transformers Movie"/>
             <Button x:Name="BtnCredits" Content="CrediTs" Height="54" Canvas.Left="140" Canvas.Top="492.04" Width="150" Background="#BF000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" FontFamily="Transformers Movie"/>
         </Canvas>
-        <Canvas x:Name="CanIntro" Height="764" Canvas.Left="10" Canvas.Top="10" Width="430" Visibility="Collapsed" d:IsHidden="True">
+        <Canvas x:Name="CanIntro" Height="764" Canvas.Left="10" Canvas.Top="10" Width="430" Visibility="Collapsed">
             <TextBlock x:Name="txtConflicted" TextWrapping="Wrap" Width="410" Foreground="#FF007DC8" FontFamily="Transformers Movie" TextAlignment="Center" FontSize="24" Canvas.Left="10" Canvas.Top="10" Height="744" Padding="0,315,10,0" MouseLeftButtonDown="txtConflicted_MouseLeftButtonDown" Opacity="0.01"/>
         </Canvas>
         <Canvas x:Name="CanBattle" Height="764" Canvas.Left="10" Canvas.Top="10" Width="430" Visibility="Collapsed">
-            <ProgressBar Height="150" Canvas.Left="10.852" Canvas.Top="602.88" Width="150" Value="50" RenderTransformOrigin="0.5,0.5" Foreground="#FFC8007D" Background="{x:Null}" BorderBrush="#FFC8007D">
+            <ProgressBar Height="10" Canvas.Left="-361" Canvas.Top="363" Width="735" Value="50" RenderTransformOrigin="0.5,0.5" Foreground="#FFC8007D" BorderBrush="#FFC8007D" Background="{x:Null}">
                 <ProgressBar.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -86,7 +86,7 @@
                     </TransformGroup>
                 </ProgressBar.RenderTransform>
             </ProgressBar>
-            <ProgressBar Height="150" Canvas.Left="269.852" Canvas.Top="602.88" Width="150" Value="50" RenderTransformOrigin="0.5,0.5" Foreground="#FF00C8C8" Background="{x:Null}" BorderBrush="#FF00C8C8">
+            <ProgressBar Height="10" Canvas.Left="40" Canvas.Top="363" Width="735" Value="50" RenderTransformOrigin="0.5,0.5" Foreground="#FF007DC8" Background="{x:Null}" BorderBrush="#FF007DC8">
                 <ProgressBar.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

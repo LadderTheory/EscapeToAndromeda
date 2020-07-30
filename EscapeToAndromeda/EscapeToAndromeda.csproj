@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\Orb.png" />
     <None Remove="Resources\Images\Ships\armored01.png" />
     <None Remove="Resources\Images\Ships\armored02.png" />
     <None Remove="Resources\Images\Ships\armored03.png" />
@@ -25,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Images\Orb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Ships\armored01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
