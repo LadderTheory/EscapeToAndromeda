@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +24,7 @@ namespace EscapeToAndromeda
 
 		public MainWindow()
 		{
-			InitializeComponent();			
+			InitializeComponent();
 
 			CanMain.Visibility = Visibility.Visible;
 
@@ -85,38 +86,10 @@ namespace EscapeToAndromeda
 		/// <param name="e"></param>
 		private void BtnExit_Click(object sender, RoutedEventArgs e)
 		{
-			
 			Close();
 		}
 
-		private void onKeyUp(object sender, KeyEventArgs e)
-        {
-			// if the left key is released
-			// set move left to false
-
-
-			// if the right key is released
-			// set move right to false
-
-			if (e.Key == Key.Left)
-			{
-				moveLeft = false;
-			}
-			if (e.Key == Key.Right)
-			{
-				moveRight = false;
-			}
-            if (e.Key == Key.Up)
-            {
-				moveUp = false;
-            }
-            if (e.Key == Key.Down)
-            {
-				moveDown = false;
-            }
-		}
-
-		private void onKeyDown(object sender, KeyEventArgs e)
+		private void CanBattle_KeyDown(object sender, KeyEventArgs e)
 		{
 			// if the left key is released
 			// set move left to false
@@ -125,21 +98,41 @@ namespace EscapeToAndromeda
 			// if the right key is released
 			// set move right to false
 
-			if (e.Key == Key.Left)
+			switch (e.Key)
 			{
-				moveLeft = true;
+				case Key.Left:
+					moveLeft  = true;
+					break;
+				case Key.Right:
+					moveRight = true;
+					break;
+				case Key.Up:
+					moveUp = true;
+					break;
+				case Key.Down:
+				{
+					moveDown = true;
+					break;
+				}
 			}
-			if (e.Key == Key.Right)
+		}
+
+		private void CanBattle_KeyUp(object sender, KeyEventArgs e)
+		{
+			switch (e.Key)
 			{
-				moveRight = true;
-			}
-			if (e.Key == Key.Up)
-			{
-				moveUp = true;
-			}
-			if (e.Key == Key.Down)
-			{
-				moveDown = true;
+				case Key.Left:
+					moveLeft = false;
+					break;
+				case Key.Right:
+					moveRight = false;
+					break;
+				case Key.Up:
+					moveUp = false;
+					break;
+				case Key.Down:
+					moveDown = false;
+					break;
 			}
 		}
 
@@ -214,6 +207,11 @@ namespace EscapeToAndromeda
 				await Task.Delay(2000);
 				CanIntro.Visibility = Visibility.Collapsed;
 				CanBattle.Visibility = Visibility.Visible;
+
+				txtConflicted.Visibility = Visibility.Collapsed;
+				txtConflicted.IsEnabled = false;
+
+				CanBattle.Focus();
 			}
 		}
 	}
