@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,12 @@ namespace EscapeToAndromeda
 	/// </summary>
 	public sealed partial class MainWindow
 	{
+		bool moveUp, moveDown, moveLeft, moveRight; // helps to determine ship movement and position
+
+		Rect playerHitbox; // hitbox for the ship	
+
+		int playerSpeed = 10; // speed of player ship
+
 		private readonly DispatcherTimer _gameTimer = new DispatcherTimer();
 
 		public MainWindow()
@@ -45,6 +52,31 @@ namespace EscapeToAndromeda
 
 		private void GameEngine(object sender, EventArgs e)
 		{
+			playerHitbox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
+
+			// player movement begins
+
+			if (moveLeft && Canvas.GetLeft(player) > 0)
+			{
+				// if move left is true AND player is inside the boundary then move player to the left
+				Canvas.SetLeft(player, Canvas.GetLeft(player) - playerSpeed);
+			}
+			if (moveRight && Canvas.GetLeft(player) + 90 < Application.Current.MainWindow.Width)
+			{
+				// if move right is true AND player left + 90 is less than the width of the form
+				// then move the player to the right
+				Canvas.SetLeft(player, Canvas.GetLeft(player) + playerSpeed);
+			}
+            if (moveUp && Canvas.GetTop(player) > 15)
+            {
+				Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
+            }
+            if (moveDown && Canvas.GetBottom(player) + 90 < Application.Current.MainWindow.Height)
+            {
+				Canvas.SetBottom(player, Canvas.GetBottom(player) + playerSpeed);
+            }
+
+			// player movement ends
 		}
 
 		/// <summary>
@@ -55,6 +87,53 @@ namespace EscapeToAndromeda
 		private void BtnExit_Click(object sender, RoutedEventArgs e)
 		{
 			Close();
+		}
+
+		private void CanBattle_KeyDown(object sender, KeyEventArgs e)
+		{
+			// if the left key is released
+			// set move left to false
+
+
+			// if the right key is released
+			// set move right to false
+
+			switch (e.Key)
+			{
+				case Key.Left:
+					moveLeft  = true;
+					break;
+				case Key.Right:
+					moveRight = true;
+					break;
+				case Key.Up:
+					moveUp = true;
+					break;
+				case Key.Down:
+				{
+					moveDown = true;
+					break;
+				}
+			}
+		}
+
+		private void CanBattle_KeyUp(object sender, KeyEventArgs e)
+		{
+			switch (e.Key)
+			{
+				case Key.Left:
+					moveLeft = false;
+					break;
+				case Key.Right:
+					moveRight = false;
+					break;
+				case Key.Up:
+					moveUp = false;
+					break;
+				case Key.Down:
+					moveDown = false;
+					break;
+			}
 		}
 
 		/// <summary>
@@ -128,6 +207,11 @@ namespace EscapeToAndromeda
 				await Task.Delay(2000);
 				CanIntro.Visibility = Visibility.Collapsed;
 				CanBattle.Visibility = Visibility.Visible;
+
+				txtConflicted.Visibility = Visibility.Collapsed;
+				txtConflicted.IsEnabled = false;
+
+				CanBattle.Focus();
 			}
 		}
 	}
