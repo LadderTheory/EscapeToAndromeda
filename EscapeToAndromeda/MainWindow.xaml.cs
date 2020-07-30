@@ -13,11 +13,17 @@ namespace EscapeToAndromeda
 	/// </summary>
 	public sealed partial class MainWindow
 	{
+		bool moveUp, moveDown, moveLeft, moveRight; // helps to determine ship movement and position
+
+		Rect playerHitbox; // hitbox for the ship	
+
+		int playerSpeed = 10; // speed of player ship
+
 		private readonly DispatcherTimer _gameTimer = new DispatcherTimer();
 
 		public MainWindow()
 		{
-			InitializeComponent();
+			InitializeComponent();			
 
 			CanMain.Visibility = Visibility.Visible;
 
@@ -45,6 +51,31 @@ namespace EscapeToAndromeda
 
 		private void GameEngine(object sender, EventArgs e)
 		{
+			playerHitbox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
+
+			// player movement begins
+
+			if (moveLeft && Canvas.GetLeft(player) > 0)
+			{
+				// if move left is true AND player is inside the boundary then move player to the left
+				Canvas.SetLeft(player, Canvas.GetLeft(player) - playerSpeed);
+			}
+			if (moveRight && Canvas.GetLeft(player) + 90 < Application.Current.MainWindow.Width)
+			{
+				// if move right is true AND player left + 90 is less than the width of the form
+				// then move the player to the right
+				Canvas.SetLeft(player, Canvas.GetLeft(player) + playerSpeed);
+			}
+            if (moveUp && Canvas.GetTop(player) > 15)
+            {
+				Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
+            }
+            if (moveDown && Canvas.GetBottom(player) + 90 < Application.Current.MainWindow.Height)
+            {
+				Canvas.SetBottom(player, Canvas.GetBottom(player) + playerSpeed);
+            }
+
+			// player movement ends
 		}
 
 		/// <summary>
@@ -54,7 +85,62 @@ namespace EscapeToAndromeda
 		/// <param name="e"></param>
 		private void BtnExit_Click(object sender, RoutedEventArgs e)
 		{
+			
 			Close();
+		}
+
+		private void onKeyUp(object sender, KeyEventArgs e)
+        {
+			// if the left key is released
+			// set move left to false
+
+
+			// if the right key is released
+			// set move right to false
+
+			if (e.Key == Key.Left)
+			{
+				moveLeft = false;
+			}
+			if (e.Key == Key.Right)
+			{
+				moveRight = false;
+			}
+            if (e.Key == Key.Up)
+            {
+				moveUp = false;
+            }
+            if (e.Key == Key.Down)
+            {
+				moveDown = false;
+            }
+		}
+
+		private void onKeyDown(object sender, KeyEventArgs e)
+		{
+			// if the left key is released
+			// set move left to false
+
+
+			// if the right key is released
+			// set move right to false
+
+			if (e.Key == Key.Left)
+			{
+				moveLeft = true;
+			}
+			if (e.Key == Key.Right)
+			{
+				moveRight = true;
+			}
+			if (e.Key == Key.Up)
+			{
+				moveUp = true;
+			}
+			if (e.Key == Key.Down)
+			{
+				moveDown = true;
+			}
 		}
 
 		/// <summary>
