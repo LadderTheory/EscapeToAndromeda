@@ -7,28 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Images\Orb.png" />
     <None Remove="Resources\Images\Ships\armored01.png" />
     <None Remove="Resources\Images\Ships\armored02.png" />
     <None Remove="Resources\Images\Ships\armored03.png" />
-    <None Remove="Resources\Images\Ships\armored04.png" />
     <None Remove="Resources\Images\Ships\default01.png" />
     <None Remove="Resources\Images\Ships\default02.png" />
     <None Remove="Resources\Images\Ships\default03.png" />
-    <None Remove="Resources\Images\Ships\default04.png" />
+    <None Remove="Resources\Images\Ships\desert01.png" />
+    <None Remove="Resources\Images\Ships\desert02.png" />
+    <None Remove="Resources\Images\Ships\desert03.png" />
     <None Remove="Resources\Images\Ships\integration01.png" />
     <None Remove="Resources\Images\Ships\integration02.png" />
     <None Remove="Resources\Images\Ships\integration03.png" />
-    <None Remove="Resources\Images\Ships\integration04.png" />
+    <None Remove="Resources\Images\space.png" />
+    <None Remove="Resources\Images\spacebackground1.png" />
     <None Remove="Resources\Interstellar.mp3" />
     <None Remove="Resources\PlanetMain.png" />
     <None Remove="Resources\Transformers Movie.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Images\Orb.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Images\Ships\armored01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -36,9 +34,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Ships\armored03.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Ships\armored04.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Ships\default01.png">
@@ -50,7 +45,13 @@
     <Content Include="Resources\Images\Ships\default03.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Ships\default04.png">
+    <Content Include="Resources\Images\Ships\desert01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\desert02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Ships\desert03.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Ships\integration01.png">
@@ -62,7 +63,10 @@
     <Content Include="Resources\Images\Ships\integration03.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Ships\integration04.png">
+    <Content Include="Resources\Images\space.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\spacebackground1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Sound\Interstellar.mp3">
@@ -78,9 +82,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="imgres.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>imgres.resx</DependentUpon>
+    </Compile>
     <Compile Update="LocalizationEnglish.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -89,6 +99,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="imgres.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>imgres.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="LocalizationEnglish.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizationEnglish.Designer.cs</LastGenOutput>
