@@ -83,8 +83,8 @@
             </Rectangle>-->
             <Rectangle Name="moving" Height="800" Width="430" Fill="Red"/>
             <Rectangle Name="moving2" Height="800" Width="430" Fill="Orange" Canvas.Bottom="800"/>
-            <Rectangle Name="moving3" Height="800" Width="430" Fill="Yellow"/>
-            <Rectangle Name="moving4" Height="800" Width="430" Fill="Green" Canvas.Bottom="800"/>
+            <Rectangle Name="moving3" Height="800" Width="430" Fill="Yellow" Canvas.Left="-18"/>
+            <Rectangle Name="moving4" Height="800" Width="430" Fill="Green" Canvas.Bottom="800" Canvas.Left="-18" Canvas.Top="-836"/>
             <Rectangle x:Name="recPlayer" Height="34" Width="64" Canvas.Top="592" Canvas.Left="186" >
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Resources/Images/Ships/default01.png" Stretch="UniformToFill"/>
