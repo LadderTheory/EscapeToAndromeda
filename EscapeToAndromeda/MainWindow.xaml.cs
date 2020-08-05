@@ -73,14 +73,33 @@ namespace EscapeToAndromeda
 		private          int  damage; // default damage
 		private          int  enemyCounter = 100; // enemy spawn time
 		private          int  enemySpriteCounter; // int to help change enemy images
-		private readonly int  limit = 50; // limit of enemy spawns
-
+		private readonly int  limit = 50; // limit of enemy spawns		
 
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			ToogleCanvases(CanMain);
+            // Steve Change 1				
+            ImageBrush moveBack = new ImageBrush(); // Creates background for both moving backgrounds
+            moveBack.ImageSource = new BitmapImage(new Uri($@"pack://application:,,,/Resources/Images/spacebackground1.png",
+                                                     UriKind.RelativeOrAbsolute)); // file path for spacebackground.png		
+            moving.Fill = moveBack; // fills the first background with spacebackground1.png
+            moving2.Fill = moveBack; // fills the second background with spacebackground1.png
+			moving3.Fill = moveBack;
+			moving4.Fill = moveBack;
+            Canvas.SetBottom(moving, 0); // set the first background to 0
+            Canvas.SetBottom(moving2, 800); // set the second background to 800
+			Canvas.SetBottom(moving3, 0);
+			Canvas.SetBottom(moving4, 800);
+
+            //ImageBrush bg = new ImageBrush(); // new image brush for dedicated background
+            //bg.ImageSource = new BitmapImage(new Uri($@"pack://application:,,,/Resources/Images/spacebackground1.png",
+            //										 UriKind.RelativeOrAbsolute)); // file path for the spacebackground.png
+            //bg.TileMode = TileMode.Tile; // Creates cleaner background formatting
+            //CanBattle.Background = bg; // sets the spacebackground.png as dedicated background
+            // End of Steve Change 1
+
+            ToogleCanvases(CanMain);
 
 			var sboPlanetRotation = TryFindResource("PlanetRotation") as Storyboard;
 			sboPlanetRotation.Begin();
@@ -89,7 +108,7 @@ namespace EscapeToAndromeda
 
 			_gameTimer.Interval = TimeSpan.FromMilliseconds(20);
 			// link the game engine event to the timer
-			_gameTimer.Tick += GameEngine;
+			_gameTimer.Tick += GameEngine;			
 
 			AdjustShipModel("default01", recPlayer);
 		}
@@ -172,6 +191,39 @@ namespace EscapeToAndromeda
 
 		private void GameEngine(object sender, EventArgs e)
 		{
+			// Steve Change 2
+			Canvas.SetBottom(moving, Canvas.GetBottom(moving) - 5); // moves background down
+			Canvas.SetBottom(moving2, Canvas.GetBottom(moving2) - 5); // moves second background down
+			Canvas.SetBottom(moving3, Canvas.GetBottom(moving3) - 1);
+			Canvas.SetBottom(moving4, Canvas.GetBottom(moving4) - 1);
+
+
+			// for background 1
+			if (Canvas.GetBottom(moving) < -800)
+            {
+                // stops choppy transitions between background change
+                Canvas.SetBottom(moving, Canvas.GetBottom(moving2) + moving2.Height);
+            }
+			// for background 2
+            if (Canvas.GetBottom(moving2) < -800)
+            {
+                // stops choppy transitions between background change
+                Canvas.SetBottom(moving2, Canvas.GetBottom(moving) + moving.Height);
+            }
+			// for background 3
+			if (Canvas.GetBottom(moving3) < -800)
+			{
+				// stops choppy transitions between background change
+				Canvas.SetBottom(moving3, Canvas.GetBottom(moving4) + moving4.Height);
+			}
+			// for background 4
+			if (Canvas.GetBottom(moving4) < -800)
+			{
+				// stops choppy transitions between background change
+				Canvas.SetBottom(moving4, Canvas.GetBottom(moving3) + moving3.Height);
+			}
+			// End of Steve Change 2
+
 			_pHP += _pHPRegen / 50;
 			_pMP += _pMPRegen / 50;
 
