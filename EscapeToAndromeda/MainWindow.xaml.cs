@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Printing;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,7 +64,7 @@ namespace EscapeToAndromeda
 		private readonly Random _rnGesus = new Random();
 
 		/// <summary>
-		///     Each of these help to determine the firing state of the player vehicle
+		///     Each of these help to determine the state of the player vehicle
 		/// </summary>
 		private bool _moveUp, _moveDown, _moveLeft, _moveRight, _isFiring;
 
@@ -79,11 +78,15 @@ namespace EscapeToAndromeda
 		{
 			InitializeComponent();
 
-            // Steve Change 1				
-            ImageBrush moveBack = new ImageBrush(); // Creates background for both moving backgrounds
-            moveBack.ImageSource = new BitmapImage(new Uri($@"pack://application:,,,/Resources/Images/spacebackground1.png",
-                                                     UriKind.RelativeOrAbsolute)); // file path for spacebackground.png		
-            moving.Fill = moveBack; // fills the first background with spacebackground1.png
+			// Steve Change 1				
+			ImageBrush moveBack = new ImageBrush
+			{
+				ImageSource = new BitmapImage(new Uri($@"pack://application:,,,/Resources/Images/spacebackground1.png",
+													 UriKind.RelativeOrAbsolute)) // file path for spacebackground.png		
+			}; // Creates background for both moving backgrounds
+
+
+			moving.Fill = moveBack; // fills the first background with spacebackground1.png
             moving2.Fill = moveBack; // fills the second background with spacebackground1.png
 			moving3.Fill = moveBack;
 			moving4.Fill = moveBack;
@@ -113,6 +116,11 @@ namespace EscapeToAndromeda
 			AdjustShipModel("default01", recPlayer);
 		}
 
+		/// <summary>
+		/// Adjust the rectangle fill object to whatever name of ship.
+		/// </summary>
+		/// <param name="strImgName"></param>
+		/// <param name="recToResize"></param>
 		private void AdjustShipModel(string strImgName, Rectangle recToResize)
 		{
 			var imgToPaint = new BitmapImage(new Uri($@"pack://application:,,,/Resources/images/Ships/{strImgName}.png",
@@ -189,6 +197,12 @@ namespace EscapeToAndromeda
 			GC.Collect(); // collect any unused resources for this game
 		}
 
+		/// <summary>
+		/// This event is triggered once every 20 milliseconds as defined in the MainWIndow Concstructor. 
+		/// TODO: Make it's own class
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void GameEngine(object sender, EventArgs e)
 		{
 			// Steve Change 2
@@ -341,7 +355,7 @@ namespace EscapeToAndromeda
 				}
 
 				// outside the second loop lets check for the enemy again
-				if (x is Rectangle && (string) x.Tag == "enemy")
+				if (x is Rectangle && x.Tag?.ToString() == "enemy")
 				{
 					// if we find a rectangle with the enemy tag
 
@@ -399,6 +413,11 @@ namespace EscapeToAndromeda
 			Close();
 		}
 
+		/// <summary>
+		/// When any particular key is held down, change the proper boolean
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Window_KeyDown(object sender, KeyEventArgs e)
 		{
 			switch (e.Key)
@@ -421,6 +440,11 @@ namespace EscapeToAndromeda
 			}
 		}
 
+		/// <summary>
+		/// When any particular key is released, change the proper boolean
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Window_KeyUp(object sender, KeyEventArgs e)
 		{
 			switch (e.Key)
