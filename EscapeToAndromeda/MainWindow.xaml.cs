@@ -68,11 +68,11 @@ namespace EscapeToAndromeda
 		/// </summary>
 		private bool _moveUp, _moveDown, _moveLeft, _moveRight, _isFiring;
 
-		private          Rect _playerHitbox; // hitbox for the ship
-		private          int  damage; // default damage
-		private          int  enemyCounter = 100; // enemy spawn time
-		private          int  enemySpriteCounter; // int to help change enemy images
-		private readonly int  limit = 50; // limit of enemy spawns		
+		private Rect _playerHitbox; // hitbox for the ship
+		private int damage; // default damage
+		private int enemyCounter = 100; // enemy spawn time
+		private int enemySpriteCounter; // int to help change enemy images
+		private readonly int limit = 50; // limit of enemy spawns		
 
 		public MainWindow()
 		{
@@ -87,22 +87,22 @@ namespace EscapeToAndromeda
 
 
 			moving.Fill = moveBack; // fills the first background with spacebackground1.png
-            moving2.Fill = moveBack; // fills the second background with spacebackground1.png
+			moving2.Fill = moveBack; // fills the second background with spacebackground1.png
 			moving3.Fill = moveBack;
 			moving4.Fill = moveBack;
-            Canvas.SetBottom(moving, 0); // set the first background to 0
-            Canvas.SetBottom(moving2, 800); // set the second background to 800
+			Canvas.SetBottom(moving, 0); // set the first background to 0
+			Canvas.SetBottom(moving2, 800); // set the second background to 800
 			Canvas.SetBottom(moving3, 0);
 			Canvas.SetBottom(moving4, 800);
 
-            //ImageBrush bg = new ImageBrush(); // new image brush for dedicated background
-            //bg.ImageSource = new BitmapImage(new Uri($@"pack://application:,,,/Resources/Images/spacebackground1.png",
-            //										 UriKind.RelativeOrAbsolute)); // file path for the spacebackground.png
-            //bg.TileMode = TileMode.Tile; // Creates cleaner background formatting
-            //CanBattle.Background = bg; // sets the spacebackground.png as dedicated background
-            // End of Steve Change 1
+			//ImageBrush bg = new ImageBrush(); // new image brush for dedicated background
+			//bg.ImageSource = new BitmapImage(new Uri($@"pack://application:,,,/Resources/Images/spacebackground1.png",
+			//										 UriKind.RelativeOrAbsolute)); // file path for the spacebackground.png
+			//bg.TileMode = TileMode.Tile; // Creates cleaner background formatting
+			//CanBattle.Background = bg; // sets the spacebackground.png as dedicated background
+			// End of Steve Change 1
 
-            ToogleCanvases(CanMain);
+			ToogleCanvases(CanMain);
 
 			var sboPlanetRotation = TryFindResource("PlanetRotation") as Storyboard;
 			sboPlanetRotation.Begin();
@@ -111,7 +111,7 @@ namespace EscapeToAndromeda
 
 			_gameTimer.Interval = TimeSpan.FromMilliseconds(20);
 			// link the game engine event to the timer
-			_gameTimer.Tick += GameEngine;			
+			_gameTimer.Tick += GameEngine;
 
 			AdjustShipModel("default01", recPlayer);
 		}
@@ -127,7 +127,7 @@ namespace EscapeToAndromeda
 													 UriKind.RelativeOrAbsolute));
 
 			recToResize.Height = imgToPaint.Height * 0.50;
-			recToResize.Width  = imgToPaint.Width * 0.50;
+			recToResize.Width = imgToPaint.Width * 0.50;
 
 			recToResize.Fill = new ImageBrush(imgToPaint);
 		}
@@ -141,11 +141,11 @@ namespace EscapeToAndromeda
 			foreach (Canvas leCanvas in CanBackground.Children.OfType<Canvas>())
 			{
 				leCanvas.Visibility = Visibility.Collapsed;
-				leCanvas.IsEnabled  = false;
+				leCanvas.IsEnabled = false;
 			}
 
 			focusedCanvas.Visibility = Visibility.Visible;
-			focusedCanvas.IsEnabled  = true;
+			focusedCanvas.IsEnabled = true;
 			focusedCanvas.Focus();
 		}
 
@@ -179,17 +179,17 @@ namespace EscapeToAndromeda
 			// background fill is assigned to the randomly generated enemy sprite from the switch statement above
 
 			var newEnemy = new Rectangle
-						   {
-							   Tag    = "enemy",
-							   Height = enemySprite.ImageSource.Height * 0.50,
-							   Width  = enemySprite.ImageSource.Width * 0.50,
-							   Fill   = enemySprite
-						   };
+			{
+				Tag = "enemy",
+				Height = enemySprite.ImageSource.Height * 0.50,
+				Width = enemySprite.ImageSource.Width * 0.50,
+				Fill = enemySprite
+			};
 
 
 			Canvas.SetTop(newEnemy, -100); // set the top position of the enemy to -100
-			// randomly generate the left position of the enemy
-			Canvas.SetLeft(newEnemy, _rnGesus.Next(50, (int) CanBattle.ActualWidth - 60));
+										   // randomly generate the left position of the enemy
+			Canvas.SetLeft(newEnemy, _rnGesus.Next(50, (int)CanBattle.ActualWidth - 60));
 			// add the enemy object to the screen
 			CanBattle.Children.Add(newEnemy);
 
@@ -214,16 +214,16 @@ namespace EscapeToAndromeda
 
 			// for background 1
 			if (Canvas.GetBottom(moving) < -800)
-            {
-                // stops choppy transitions between background change
-                Canvas.SetBottom(moving, Canvas.GetBottom(moving2) + moving2.Height);
-            }
+			{
+				// stops choppy transitions between background change
+				Canvas.SetBottom(moving, Canvas.GetBottom(moving2) + moving2.Height);
+			}
 			// for background 2
-            if (Canvas.GetBottom(moving2) < -800)
-            {
-                // stops choppy transitions between background change
-                Canvas.SetBottom(moving2, Canvas.GetBottom(moving) + moving.Height);
-            }
+			if (Canvas.GetBottom(moving2) < -800)
+			{
+				// stops choppy transitions between background change
+				Canvas.SetBottom(moving2, Canvas.GetBottom(moving) + moving.Height);
+			}
 			// for background 3
 			if (Canvas.GetBottom(moving3) < -800)
 			{
@@ -265,13 +265,13 @@ namespace EscapeToAndromeda
 				if (_pFiringCounter > 1000 / _pFiringSpeed)
 				{
 					var newBullet = new Rectangle
-									{
-										Tag    = "bullet",
-										Height = 20,
-										Width  = 5,
-										Fill   = Brushes.White,
-										Stroke = Brushes.Red
-									};
+					{
+						Tag = "bullet",
+						Height = 20,
+						Width = 5,
+						Fill = Brushes.White,
+						Stroke = Brushes.Red
+					};
 
 					// place the bullet on top of the player location
 					Canvas.SetTop(newBullet, Canvas.GetTop(recPlayer) - newBullet.Height);
@@ -318,7 +318,7 @@ namespace EscapeToAndromeda
 			foreach (Rectangle x in CanBattle.Children.OfType<Rectangle>())
 			{
 				// if any rectangle has the tag bullet in it
-				if (x is Rectangle && (string) x.Tag == "bullet")
+				if (x is Rectangle && (string)x.Tag == "bullet")
 				{
 					// move the bullet rectangle towards top of the screen
 					Canvas.SetTop(x, Canvas.GetTop(x) - 20);
@@ -337,7 +337,7 @@ namespace EscapeToAndromeda
 					foreach (Rectangle y in CanBattle.Children.OfType<Rectangle>())
 					{
 						// if y is a rectangle and it has a tag called enemy
-						if (y is Rectangle && (string) y.Tag == "enemy")
+						if (y is Rectangle && (string)y.Tag == "enemy")
 						{
 							// make a local rect called enemy and put the enemies properties into it
 							var enemy = new Rect(Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
@@ -492,7 +492,7 @@ namespace EscapeToAndromeda
 			// Turn down music
 			MedMusic.Volume *= 0.75;
 
-			txtConflicted.Text = English.Conflicted;
+			txtConflicted.Text = storyText[0];
 
 			// Waits 3 seconds before starting the next storyboard
 			await Task.Delay(3000);
@@ -503,6 +503,19 @@ namespace EscapeToAndromeda
 			ToogleCanvases(CanIntro);
 		}
 
+		string[] storyText =
+		{
+			"When we last left our hero, Criss with a Gun was at the top of his game.",
+			"After defeating his rival, The Rat King, it seemed nothing could stop him.",
+			"And then the unthinkable happened.",
+			"Unemployment.",
+			"Criss with a gun was simply too powerful. Overqualified. Too good. At everything.",
+			"No one wants to hire an overqualified man.",
+			"Eventually, having no money and no place to live, he retired to his dumpster.",
+			"But just becuase Criss with a Gun lives in a dumpster, does not mean he slacks on his responsibility.",
+			"The responsibility of saving our planet.",
+		};
+
 		/// <summary>
 		///     Transitions through the intro screen
 		/// </summary>
@@ -510,9 +523,49 @@ namespace EscapeToAndromeda
 		/// <param name="e"></param>
 		private async void txtConflicted_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			var sboConflictedEnable  = TryFindResource("txtConflictedEnable") as Storyboard;
+			var sboConflictedEnable = TryFindResource("txtConflictedEnable") as Storyboard;
 			var sboConflictedDisable = TryFindResource("txtConflictedDisable") as Storyboard;
 
+			/*
+				When we last left our hero, Criss with a Gun was at the top of his game.
+				After defeating his rival, The Rat King, it seemed nothing could stop him.
+				And then the unthinkable happened.
+				Unemployment.
+				Criss with a gun was simply to powerful. Overqualified. Too good. At everything.
+				No one wants to hire an overqualified man.
+				Eventually, having no money and no place to live, he retired to his dumpster.
+				But just becuase Criss with a Gun lives in a dumpster, does not mean he slacks on his responsibility.
+				The responsibility of saving our planet.
+			*/
+
+			if (txtConflicted.Text == storyText[storyText.Length - 1])
+			{
+				sboConflictedDisable.Begin();
+
+				//await Task.Delay(2000);
+
+				ToogleCanvases(CanBattle);
+				_gameTimer.Start();
+
+				prgHP.Maximum = _pMaxHP;
+				prgMP.Maximum = _pMaxMP;
+
+				sboConflictedDisable.Begin();
+			}
+
+			for (int i = 0; i < storyText.Length - 1; i++)
+			{
+				if (txtConflicted.Text == storyText[i])
+				{
+					sboConflictedDisable.Begin();
+					//await Task.Delay(2000);
+					txtConflicted.Text = storyText[i + 1];
+					sboConflictedEnable.Begin();
+					break;
+				}
+			}
+
+			/*
 			if (txtConflicted.Text == English.Conflicted)
 			{
 				sboConflictedDisable.Begin();
@@ -545,6 +598,7 @@ namespace EscapeToAndromeda
 				prgHP.Maximum = _pMaxHP;
 				prgMP.Maximum = _pMaxMP;
 			}
+			*/
 		}
 	}
 }
