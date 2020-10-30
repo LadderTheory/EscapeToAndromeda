@@ -51,7 +51,7 @@ namespace EscapeToAndromeda
 		/// <summary>
 		/// The multiplier for how many enemies are required to be defeated each round
 		/// </summary>
-		private int difficulty = 1;
+		private int difficulty = 3;
 
 		/// <summary>
 		/// Speed that player moves
@@ -224,17 +224,21 @@ namespace EscapeToAndromeda
 				Height = 50,
 				Width = 50,
 				Fill = enemySprite
+				
 			};
 
-			damage = 1;
-
+			//Boss Fight
 			if ((stageCount % 5 == 0) && killCount == 0)
-            {
+			{
+				damage = 100;
 				MessageBox.Show("Watch out, the super tough\nOMEGA RACOON\nhas appeared, good luck.");
 				newEnemy.Height = 200;
 				newEnemy.Width = 200;
-				damage = 100;
 			}
+			else
+            {
+				damage = 1;
+            }
 
 
 			Canvas.SetTop(newEnemy, -100); // set the top position of the enemy to -100
@@ -430,7 +434,7 @@ namespace EscapeToAndromeda
 					// if the player hit box and the enemy is colliding 
 					if (_playerHitbox.IntersectsWith(enemy))
 					{
-						_pHP -= 2;
+						_pHP -= damage;
 						_itemstoremove.Add(x); // remove the enemy object
 					}
 				}
