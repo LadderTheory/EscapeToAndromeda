@@ -74,9 +74,15 @@ namespace EscapeToAndromeda
 		private int enemySpriteCounter; // int to help change enemy images
 		private readonly int limit = 50; // limit of enemy spawns		
 
+		private int killCount = 0;
+		private int killGoal = 5;
+		private int stageCount = 1;
+
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			//showDialogBox("jig");
 
 			// Steve Change 1				
 			ImageBrush moveBack = new ImageBrush
@@ -181,15 +187,15 @@ namespace EscapeToAndromeda
 			var newEnemy = new Rectangle
 			{
 				Tag = "enemy",
-				Height = enemySprite.ImageSource.Height * 0.50,
-				Width = enemySprite.ImageSource.Width * 0.50,
+				Height = 50,
+				Width = 50,
 				Fill = enemySprite
 			};
 
 
 			Canvas.SetTop(newEnemy, -100); // set the top position of the enemy to -100
 										   // randomly generate the left position of the enemy
-			Canvas.SetLeft(newEnemy, _rnGesus.Next(50, (int)CanBattle.ActualWidth - 60));
+			Canvas.SetLeft(newEnemy, _rnGesus.Next(50, (int)CanBattle.ActualWidth - 80));
 			// add the enemy object to the screen
 			CanBattle.Children.Add(newEnemy);
 
@@ -205,11 +211,13 @@ namespace EscapeToAndromeda
 		/// <param name="e"></param>
 		private void GameEngine(object sender, EventArgs e)
 		{
+			lblKillCount.Content = killCount + "/" + killGoal + $" kills\nStage {stageCount}";
+
 			// Steve Change 2
-			Canvas.SetBottom(moving, Canvas.GetBottom(moving) - 5); // moves background down
-			Canvas.SetBottom(moving2, Canvas.GetBottom(moving2) - 5); // moves second background down
-			Canvas.SetBottom(moving3, Canvas.GetBottom(moving3) - 1);
-			Canvas.SetBottom(moving4, Canvas.GetBottom(moving4) - 1);
+			Canvas.SetBottom(moving, Canvas.GetBottom(moving) - 4); // moves background down
+			Canvas.SetBottom(moving2, Canvas.GetBottom(moving2) - 4); // moves second background down
+			Canvas.SetBottom(moving3, Canvas.GetBottom(moving3) - 3);
+			Canvas.SetBottom(moving4, Canvas.GetBottom(moving4) - 3);
 
 
 			// for background 1
@@ -349,6 +357,8 @@ namespace EscapeToAndromeda
 							{
 								_itemstoremove.Add(x); // remove bullet
 								_itemstoremove.Add(y); // remove enemy
+
+								killCount += 1;
 							}
 						}
 					}
@@ -394,14 +404,86 @@ namespace EscapeToAndromeda
 
 			if (_pHP <= 0)
 			{
-				MessageBox.Show("Remember why we started.");
+				string[] quotes =
+				{
+					"\"I'm a better driver than both of us combined!\" ~ Tyler",
+					"\"Nothing in life is so exhilarating as to be pregnant without result.\" ~ Winston Churchill",
+					"\"Clap for that you stupid bastards\" ~ Joe",
+					"\"Remember why we started.\" ~ Yura Sim",
+					"\"Na na na, na na na, Elmo\'s World!\" ~ Elmo",
+					"\"I believe in one thing only, the power of human will.\" ~ Joseph Stalin",
+					"\"Better to live a day as a lion than 100 years as a sheep.\" ~ Benito Mussolini",
+					"\"Nokias are real nasty. You gotta respect the Japanese; they know the way of the Samurai.\" - Simmons, Transformers (2007)",
+					"\"Every tyrant who has lived has believed in freedom\" ~ Elbert Hubbard"
+				};
+
+				MessageBox.Show("Died Anyways\n" + quotes[_rnGesus.Next(0,quotes.Length)] + "\nYour progress has been reset. Try again!");
 				_isFiring = false;
 				_isFiring = _moveUp = _moveDown = _moveLeft = _moveRight;
 				_pHP += 1;
+
+				killCount = 0;
+				killGoal = 5;
+				stageCount = 1;
+				_pMaxHP = 10;
+				_pHP = _pMaxHP;
+				_pMP = _pMaxMP;
+
+				foreach (Rectangle x in CanBattle.Children.OfType<Rectangle>())
+				{
+					if (x is Rectangle && x.Tag?.ToString() == "enemy")
+					{
+						_itemstoremove.Add(x);
+					}
+				}
 				// show the message box with the message inside of it
+			}
+			if (killCount >= killGoal)
+            {
+				MessageBox.Show("Stage Win'd!\nMore are coming!\nMax Health decreased");
+				killCount = 0;
+				killGoal += 5;
+				stageCount += 1;
+				if (_pMaxHP > 1)
+                {
+					_pMaxHP -= 1;
+					_pHP = _pMaxHP;
+                }
+				else
+                {
+					_pMaxHP = 1;
+					_pHP = _pMaxHP;
+                }
+
+				foreach (Rectangle x in CanBattle.Children.OfType<Rectangle>())
+				{
+					if (x is Rectangle && x.Tag?.ToString() == "enemy")
+					{
+						_itemstoremove.Add(x);
+					}
+				}
+				//showDialogBox("j");
 			}
 		}
 
+		private void showDialogBox(string text)
+        {
+			var box = new Rectangle
+			{
+				Tag = "dialogBox",
+				Height = 100,
+				Width = 400,
+				Fill = Brushes.Yellow,
+			};
+
+			Canvas.SetTop(box, 200);
+			// place the bullet middle of the player image
+			Canvas.SetLeft(box, 100);
+			// add the bullet to the screen
+			CanBattle.Children.Add(box);
+
+			box.Visibility = Visibility.Visible;
+		}
 
 		/// <summary>
 		///     What happens when we click on the exit button.

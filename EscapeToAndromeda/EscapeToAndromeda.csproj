@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="racoon1.png" />
+    <None Remove="racoon2.png" />
     <None Remove="Resources\Images\Ships\armored01.png" />
     <None Remove="Resources\Images\Ships\armored02.png" />
     <None Remove="Resources\Images\Ships\armored03.png" />
@@ -83,6 +85,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="racoon1.png" />
+    <Resource Include="racoon2.png" />
   </ItemGroup>
 
   <ItemGroup>
