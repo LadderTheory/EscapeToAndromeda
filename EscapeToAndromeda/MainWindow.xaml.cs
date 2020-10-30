@@ -211,7 +211,7 @@ namespace EscapeToAndromeda
 		/// <param name="e"></param>
 		private void GameEngine(object sender, EventArgs e)
 		{
-			lblKillCount.Content = killCount + "/" + killGoal + $" kills\nStage {stageCount}";
+			lblKillCount.Content = $"{killCount}/{killGoal} kills\nStage {stageCount}";
 
 			// Steve Change 2
 			Canvas.SetBottom(moving, Canvas.GetBottom(moving) - 4); // moves background down
@@ -417,11 +417,12 @@ namespace EscapeToAndromeda
 					"\"Every tyrant who has lived has believed in freedom\" ~ Elbert Hubbard"
 				};
 
-				MessageBox.Show("Died Anyways\n" + quotes[_rnGesus.Next(0,quotes.Length)] + "\nYour progress has been reset. Try again!");
+				MessageBox.Show($"Died Anyways\n{quotes[_rnGesus.Next(0,quotes.Length)]}\nYour progress has been reset. Try again!");
 				_isFiring = false;
 				_isFiring = _moveUp = _moveDown = _moveLeft = _moveRight;
 				_pHP += 1;
 
+				//reset all progress related statistics
 				killCount = 0;
 				killGoal = 5;
 				stageCount = 1;
