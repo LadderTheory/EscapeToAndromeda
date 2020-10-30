@@ -54,6 +54,11 @@ namespace EscapeToAndromeda
 		private int difficulty = 3;
 
 		/// <summary>
+		/// determines the frequency of when the omega will appear
+		/// </summary>
+		private int skotina = 5;
+
+		/// <summary>
 		/// Speed that player moves
 		/// </summary>
 		private int _pSpeed = 5;
@@ -228,10 +233,10 @@ namespace EscapeToAndromeda
 			};
 
 			//Boss Fight
-			if ((stageCount % 5 == 0) && killCount == 0)
+			if ((stageCount % skotina == 0) && killCount == 0)
 			{
 				damage = 100;
-				MessageBox.Show("Watch out, the super tough\nOMEGA RACOON\nhas appeared, good luck.");
+				MessageBox.Show("Watch out, the super tough\nSKOTINA\nhas appeared, good luck.");
 				newEnemy.Height = 200;
 				newEnemy.Width = 200;
 			}
@@ -560,6 +565,13 @@ namespace EscapeToAndromeda
 					break;
 				case Key.Space:
 					_isFiring = true;
+					break;
+				case Key.K:
+					_pHP = 0;
+					break;
+				case Key.O:
+					killCount = killGoal;
+					stageCount = skotina - 1;
 					break;
 			}
 		}
