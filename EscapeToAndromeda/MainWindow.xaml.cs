@@ -18,7 +18,40 @@ namespace EscapeToAndromeda
 	/// </summary>
 	public sealed partial class MainWindow
 	{
+		//Every node is a randomized possibility for the end screen to display upon a loss
+		string[] quotes =
+		{
+			"\"I'm a better driver than both of us combined!\" ~ Tyler",
+			"\"Nothing in life is so exhilarating as to be pregnant without result.\" ~ Winston Churchill",
+			"\"Clap for that you stupid bastards\" ~ Joe",
+			"\"Remember why we started.\" ~ Yura Sim",
+			"\"Na na na, na na na, Elmo\'s World!\" ~ Elmo",
+			"\"I believe in one thing only, the power of human will.\" ~ Joseph Stalin",
+			"\"Better to live a day as a lion than 100 years as a sheep.\" ~ Benito Mussolini",
+			"\"Nokias are real nasty. You gotta respect the Japanese; they know the way of the Samurai.\" - Simmons, Transformers (2007)",
+			"\"Every tyrant who has lived has believed in freedom\" ~ Elbert Hubbard"
+		};
+
+		//every node represents one page of story text that will be automatically displayed when the game is started. There is no hard limit to the ammount of nodes
+		string[] storyText =
+		{
+			"When we last left our hero, Criss with a Gun was at the top of his game.",
+			"After defeating his rival, The Rat King, it seemed nothing could stop him.",
+			"And then the unthinkable happened.",
+			"Unemployment.",
+			"Criss with a gun was simply too powerful. Overqualified. Too good. At everything.",
+			"No one wants to hire an overqualified man.",
+			"Eventually, having no money and no place to live, he retired to his dumpster.",
+			"But just becuase Criss with a Gun lives in a dumpster, does not mean he slacks on his responsibility.",
+			"The responsibility of saving our planet.",
+		};
+
 		// SCALABLE ATTRIBUTES
+
+		/// <summary>
+		/// The multiplier for how many enemies are required to be defeated each round
+		/// </summary>
+		private int difficulty = 1;
 
 		/// <summary>
 		/// Speed that player moves
@@ -69,18 +102,19 @@ namespace EscapeToAndromeda
 		private bool _moveUp, _moveDown, _moveLeft, _moveRight, _isFiring;
 
 		private Rect _playerHitbox; // hitbox for the ship
-		private int damage; // default damage
+		private int damage = 1; // default damage
 		private int enemyCounter = 100; // enemy spawn time
 		private int enemySpriteCounter; // int to help change enemy images
 		private readonly int limit = 50; // limit of enemy spawns		
 
 		private int killCount = 0;
-		private int killGoal = 5;
+		private int killGoal;
 		private int stageCount = 1;
 
 		public MainWindow()
 		{
 			InitializeComponent();
+			killGoal = difficulty;
 
 			//showDialogBox("jig");
 
@@ -191,6 +225,16 @@ namespace EscapeToAndromeda
 				Width = 50,
 				Fill = enemySprite
 			};
+
+			damage = 1;
+
+			if ((stageCount % 5 == 0) && killCount == 0)
+            {
+				MessageBox.Show("Watch out, the super tough\nOMEGA RACOON\nhas appeared, good luck.");
+				newEnemy.Height = 200;
+				newEnemy.Width = 200;
+				damage = 100;
+			}
 
 
 			Canvas.SetTop(newEnemy, -100); // set the top position of the enemy to -100
@@ -349,7 +393,7 @@ namespace EscapeToAndromeda
 						{
 							// make a local rect called enemy and put the enemies properties into it
 							var enemy = new Rect(Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
-
+							
 
 							// now check if bullet and enemy is colliding or not
 							// if the bullet is colliding with the enemy rectangle
@@ -380,7 +424,7 @@ namespace EscapeToAndromeda
 					{
 						// if so first remove the enemy object
 						_itemstoremove.Add(x);
-						_pHP -= 1;
+						_pHP -= damage;
 					}
 
 					// if the player hit box and the enemy is colliding 
@@ -404,18 +448,7 @@ namespace EscapeToAndromeda
 
 			if (_pHP <= 0)
 			{
-				string[] quotes =
-				{
-					"\"I'm a better driver than both of us combined!\" ~ Tyler",
-					"\"Nothing in life is so exhilarating as to be pregnant without result.\" ~ Winston Churchill",
-					"\"Clap for that you stupid bastards\" ~ Joe",
-					"\"Remember why we started.\" ~ Yura Sim",
-					"\"Na na na, na na na, Elmo\'s World!\" ~ Elmo",
-					"\"I believe in one thing only, the power of human will.\" ~ Joseph Stalin",
-					"\"Better to live a day as a lion than 100 years as a sheep.\" ~ Benito Mussolini",
-					"\"Nokias are real nasty. You gotta respect the Japanese; they know the way of the Samurai.\" - Simmons, Transformers (2007)",
-					"\"Every tyrant who has lived has believed in freedom\" ~ Elbert Hubbard"
-				};
+				
 
 				MessageBox.Show($"Died Anyways\n{quotes[_rnGesus.Next(0,quotes.Length)]}\nYour progress has been reset. Try again!");
 				_isFiring = false;
@@ -424,7 +457,7 @@ namespace EscapeToAndromeda
 
 				//reset all progress related statistics
 				killCount = 0;
-				killGoal = 5;
+				killGoal = difficulty;
 				stageCount = 1;
 				_pMaxHP = 10;
 				_pHP = _pMaxHP;
@@ -444,8 +477,8 @@ namespace EscapeToAndromeda
             {
 				MessageBox.Show("Stage Win'd!\nMore are coming!\nMax Health decreased");
 				killCount = 0;
-				killGoal += 5;
 				stageCount += 1;
+				killGoal = stageCount * difficulty;
 
 				//lowers the maximum hp by 1 after every stage, but prevents it from going lower than one.
 				if (_pMaxHP > 1)
@@ -590,18 +623,7 @@ namespace EscapeToAndromeda
 			ToogleCanvases(CanIntro);
 		}
 
-		string[] storyText =
-		{
-			"When we last left our hero, Criss with a Gun was at the top of his game.",
-			"After defeating his rival, The Rat King, it seemed nothing could stop him.",
-			"And then the unthinkable happened.",
-			"Unemployment.",
-			"Criss with a gun was simply too powerful. Overqualified. Too good. At everything.",
-			"No one wants to hire an overqualified man.",
-			"Eventually, having no money and no place to live, he retired to his dumpster.",
-			"But just becuase Criss with a Gun lives in a dumpster, does not mean he slacks on his responsibility.",
-			"The responsibility of saving our planet.",
-		};
+		
 
 		/// <summary>
 		///     Transitions through the intro screen
