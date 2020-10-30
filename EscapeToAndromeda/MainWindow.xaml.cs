@@ -429,6 +429,7 @@ namespace EscapeToAndromeda
 				_pHP = _pMaxHP;
 				_pMP = _pMaxMP;
 
+				//removes all enemies from the board
 				foreach (Rectangle x in CanBattle.Children.OfType<Rectangle>())
 				{
 					if (x is Rectangle && x.Tag?.ToString() == "enemy")
@@ -444,6 +445,8 @@ namespace EscapeToAndromeda
 				killCount = 0;
 				killGoal += 5;
 				stageCount += 1;
+
+				//lowers the maximum hp by 1 after every stage, but prevents it from going lower than one.
 				if (_pMaxHP > 1)
                 {
 					_pMaxHP -= 1;
@@ -455,6 +458,7 @@ namespace EscapeToAndromeda
 					_pHP = _pMaxHP;
                 }
 
+				//removes all enemies from the board
 				foreach (Rectangle x in CanBattle.Children.OfType<Rectangle>())
 				{
 					if (x is Rectangle && x.Tag?.ToString() == "enemy")
