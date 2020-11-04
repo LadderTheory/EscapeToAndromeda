@@ -21,11 +21,16 @@
     <None Remove="Resources\Images\Ships\integration01.png" />
     <None Remove="Resources\Images\Ships\integration02.png" />
     <None Remove="Resources\Images\Ships\integration03.png" />
+    <None Remove="Resources\Images\Ships\wall-e.png" />
     <None Remove="Resources\Images\space.png" />
     <None Remove="Resources\Images\spacebackground1.png" />
     <None Remove="Resources\Interstellar.mp3" />
     <None Remove="Resources\PlanetMain.png" />
     <None Remove="Resources\Transformers Movie.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Images\Ships\wall-e.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EscapeToAndromeda"
         mc:Ignorable="d"
-        Title="Escape to Andromeda" Height="800" Width="450" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="#FF00000F" Foreground="#FF000019" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
+        Title="Escape to Andromeda" Height="800" Width="450" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="#FF00000F" Foreground="#FF000019" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" WindowStyle="None">
     <Window.Resources>
         <Storyboard x:Key="PlanetRotation">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ImgPlanet" RepeatBehavior="Forever" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
@@ -54,8 +54,8 @@
     </Window.Resources>
     <Canvas x:Name="CanBackground" Background="#FF000019">
         <MediaElement x:Name="MedMusic" Height="100" Canvas.Left="30" Canvas.Top="292" Width="100" Volume="1" UnloadedBehavior="Manual" MediaEnded="MedMusic_MediaEnded"/>
-        <Canvas x:Name="CanMain" Height="774" Canvas.Left="10" Width="430" d:IsHidden="True" Background="#FF000019">
-            <Image x:Name="ImgPlanet" Height="798" Canvas.Top="311.908" Width="705" Source="/Resources/Images/PlanetMain.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="10">
+        <Canvas x:Name="CanMain" Height="774" Canvas.Left="10" Width="430" Background="#FF000019" d:IsHidden="True">
+            <Image x:Name="ImgPlanet" Height="798" Canvas.Top="311.908" Width="705" Source="/Resources/Images/PlanetMain.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="10" d:IsHidden="True">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -65,8 +65,8 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Label x:Name="LblEscapeTo" Content="Escape To" Height="97" Width="410" Background="{x:Null}" Foreground="#FF007DC8" FontSize="74.5" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center" Canvas.Left="6" Canvas.Top="132.04"/>
-            <Label x:Name="LblAndromeda" Content="Dumpstromeda" Height="100" Canvas.Left="6" Canvas.Top="189.04" Width="410" Background="{x:Null}" Foreground="#FF007DC8" FontSize="55" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center"/>
+            <Label x:Name="LblEscapeTo" Content="Escape" Height="97" Width="410" Background="{x:Null}" Foreground="#FF007DC8" FontSize="74.5" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center" Canvas.Left="10" Canvas.Top="122"/>
+            <Label x:Name="LblAndromeda" Content="2" Height="100" Canvas.Left="74" Canvas.Top="190" Width="410" Background="{x:Null}" Foreground="#FF007DC8" FontSize="55" FontFamily="Transformers Movie" RenderTransformOrigin="0.491,0.15" HorizontalContentAlignment="Center"/>
             <Button x:Name="BtnStart" Content="STarT" Height="54" Canvas.Left="140" Canvas.Top="374.04" Width="150" Background="#BF000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" FontFamily="Transformers Movie" Click="BtnStart_Click"/>
             <Button x:Name="BtnLoad" Content="Load" Height="54" Canvas.Left="140" Canvas.Top="433.04" Width="150" Background="#BF000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" FontFamily="Transformers Movie"/>
             <Button x:Name="BtnExit" Content="EXIT" Height="54" Canvas.Left="140" Canvas.Top="551.04" Width="150" Background="#BF000019" Foreground="#FF007DC8" FontSize="36" BorderBrush="#FF007DC8" Click="BtnExit_Click" FontFamily="Transformers Movie"/>
@@ -90,7 +90,7 @@
                     <ImageBrush ImageSource="/racoon1.png" Stretch="UniformToFill"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <ProgressBar x:Name="prgHP" Height="5" Canvas.Top="640" Width="200" Value="50" RenderTransformOrigin="0.5,0.5" Foreground="#FFC8007D" BorderBrush="#FFC8007D" Background="{x:Null}" Canvas.Left="-100">
+            <ProgressBar x:Name="prgHP" Height="6" Canvas.Top="675" Width="200" Value="50" RenderTransformOrigin="0.5,0.5" Foreground="#FFC8007D" BorderBrush="#FFC8007D" Background="{x:Null}" Canvas.Left="-100">
                 <ProgressBar.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -100,7 +100,7 @@
                     </TransformGroup>
                 </ProgressBar.RenderTransform>
             </ProgressBar>
-            <ProgressBar x:Name="prgMP" Height="6" Canvas.Top="640" Width="200" Value="50" RenderTransformOrigin="0.5,0.5" Foreground="#FF007DC8" Background="{x:Null}" BorderBrush="#FF007DC8" Canvas.Left="-90">
+            <ProgressBar x:Name="prgMP" Height="6" Canvas.Top="675" Width="200" Value="50" RenderTransformOrigin="0.5,0.5" Foreground="#FF007DC8" Background="{x:Null}" BorderBrush="#FF007DC8" Canvas.Left="-90">
                 <ProgressBar.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

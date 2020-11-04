@@ -22,19 +22,18 @@ namespace EscapeToAndromeda
 		string[] quotes =
 		{
 			"\"I'm a better driver than both of us combined!\" ~ Tyler",
-			"\"Nothing in life is so exhilarating as to be pregnant without result.\" ~ Winston Churchill",
-			"\"Clap for that you stupid bastards\" ~ Joe",
 			"\"Remember why we started.\" ~ Yura Sim",
 			"\"Na na na, na na na, Elmo\'s World!\" ~ Elmo",
 			"\"I believe in one thing only, the power of human will.\" ~ Joseph Stalin",
 			"\"Better to live a day as a lion than 100 years as a sheep.\" ~ Benito Mussolini",
 			"\"Nokias are real nasty. You gotta respect the Japanese; they know the way of the Samurai.\" - Simmons, Transformers (2007)",
-			"\"Every tyrant who has lived has believed in freedom\" ~ Elbert Hubbard"
+			"\"Every tyrant who has lived has believed in freedom\" ~ Elbert Hubbard",
 		};
 
 		//every node represents one page of story text that will be automatically displayed when the game is started. There is no hard limit to the ammount of nodes
 		string[] storyText =
 		{
+			/* early script
 			"When we last left our hero, Criss with a Gun was at the top of his game.",
 			"After defeating his rival, The Rat King, it seemed nothing could stop him.",
 			"And then the unthinkable happened.",
@@ -44,6 +43,17 @@ namespace EscapeToAndromeda
 			"Eventually, having no money and no place to live, he retired to his dumpster.",
 			"But just becuase Criss with a Gun lives in a dumpster, does not mean he slacks on his responsibility.",
 			"The responsibility of saving our planet.",
+			*/
+
+			"When we last left our hero, Criss with a Gun was at the top of his game.",
+			"After defeating his rival, The Rat Master, it seemed nothing could stop him.",
+			"And then, the unthinkable happened.",
+			"Unemployment.",
+			"Criss with a Gun was just that, a man inseparable from his gun",
+			"No one wants to hire a man with a gun.",
+			"Knowing this, Criss went home to play the sequel to his favorite video game",
+			"Escape 2",
+			"This, is his story"
 		};
 
 		// SCALABLE ATTRIBUTES
@@ -158,7 +168,7 @@ namespace EscapeToAndromeda
 			// link the game engine event to the timer
 			_gameTimer.Tick += GameEngine;
 
-			AdjustShipModel("default01", recPlayer);
+			AdjustShipModel("default01", recPlayer, 140, 100);
 		}
 
 		/// <summary>
@@ -166,13 +176,13 @@ namespace EscapeToAndromeda
 		/// </summary>
 		/// <param name="strImgName"></param>
 		/// <param name="recToResize"></param>
-		private void AdjustShipModel(string strImgName, Rectangle recToResize)
+		private void AdjustShipModel(string strImgName, Rectangle recToResize, int height, int width)
 		{
 			var imgToPaint = new BitmapImage(new Uri($@"pack://application:,,,/Resources/images/Ships/{strImgName}.png",
 													 UriKind.RelativeOrAbsolute));
 
-			recToResize.Height = imgToPaint.Height * 0.50;
-			recToResize.Width = imgToPaint.Width * 0.50;
+			recToResize.Height = height;
+			recToResize.Width = width;
 
 			recToResize.Fill = new ImageBrush(imgToPaint);
 		}
@@ -202,6 +212,7 @@ namespace EscapeToAndromeda
 		private static void PlayMusic(string strSoundFileName, MediaElement medPlayer)
 		{
 			medPlayer.Source = new Uri($@"Resources/Sound/{strSoundFileName}.mp3", UriKind.Relative);
+			medPlayer.Volume = .2;
 		}
 
 		private void MakeEnemies()
@@ -226,8 +237,8 @@ namespace EscapeToAndromeda
 			var newEnemy = new Rectangle
 			{
 				Tag = "enemy",
-				Height = 50,
-				Width = 50,
+				Height = 120,
+				Width = 70,
 				Fill = enemySprite
 				
 			};
@@ -237,8 +248,9 @@ namespace EscapeToAndromeda
 			{
 				damage = 100;
 				MessageBox.Show("Watch out, the super tough\nSKOTINA\nhas appeared, good luck.");
-				newEnemy.Height = 200;
-				newEnemy.Width = 200;
+				enemySprite.ImageSource = new BitmapImage(new Uri($@"pack://application:,,,/Resources/images/Ships/wall-e.png"));
+				newEnemy.Height = 250;
+				newEnemy.Width = 250;
 			}
 			else
             {
@@ -513,6 +525,10 @@ namespace EscapeToAndromeda
 			}
 		}
 
+		/// <summary>
+		/// to be implemented. method to show a better dialog box than the message box
+		/// </summary>
+		/// <param name="text"></param>
 		private void showDialogBox(string text)
         {
 			var box = new Rectangle
@@ -567,11 +583,14 @@ namespace EscapeToAndromeda
 					_isFiring = true;
 					break;
 				case Key.K:
-					_pHP = 0;
+					_pHP = -1;
 					break;
 				case Key.O:
 					killCount = killGoal;
 					stageCount = skotina - 1;
+					break;
+				case Key.Escape:
+					Close();
 					break;
 			}
 		}
