@@ -21,7 +21,7 @@ namespace EscapeToAndromeda
 		//Every node is a randomized possibility for the end screen to display upon a loss
 		string[] quotes =
 		{
-			"\"I'm a better driver than both of us combined!\" ~ Tyler",
+			"\"I'm a better driver than both of us combined!\" ~ The Shopkeeper",
 			"\"Remember why we started.\" ~ Yura Sim",
 			"\"Na na na, na na na, Elmo\'s World!\" ~ Elmo",
 			"\"I believe in one thing only, the power of human will.\" ~ Joseph Stalin",
